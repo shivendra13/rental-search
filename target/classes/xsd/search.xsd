@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+<!-- definition of simple elements -->
+<xs:element name="item_id" type="xs:long"/>
+<xs:element name="product_ref_id" type="xs:long"/>
+<xs:element name="title" type="xs:string"/>
+<xs:element name="category_id" type="xs:integer"/>
+<xs:element name="category_data" type="xs:string"/>
+<xs:element name="price" type="xs:decimal"/>
+<xs:element name="seller_rating" type="xs:integer"/>
+<xs:element name="condition" type="xs:string"/>
+<xs:element name="seller_id" type="xs:long"/>
+<xs:element name="quantity" type="xs:integer"/>
+<xs:element name="lat" type="xs:double"/>
+<xs:element name="lon" type="xs:double"/>
+
+
+<xs:simpleType name="from_date">
+   <xs:restriction base="xs:date">
+  </xs:restriction>
+</xs:simpleType> 
+
+
+<xs:simpleType name="to_date">
+   <xs:restriction base="xs:date">
+  </xs:restriction>
+</xs:simpleType> 
+
+
+<xs:element name="index" type="xs:string"/>
+<xs:element name="type" type="xs:string"/>
+<xs:element name="id" type="xs:string"/>
+<xs:element name="score" type="xs:decimal"/>
+
+
+<xs:element name="total" type="xs:integer"/>
+<xs:element name="max_score" type="xs:decimal"/>
+<xs:element name="successful" type="xs:integer"/>
+<xs:element name="failed" type="xs:integer"/>
+
+
+<xs:element name="took" type="xs:integer"/>
+<xs:element name="timed_out" type="xs:boolean"/>
+
+
+<xs:element name="searchKeyword" type="xs:string"/>
+
+
+<!-- definition of complex elements -->
+<xs:element name="location">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="lat"/>
+      <xs:element ref="lon"/>
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="availability">
+  <xs:complexType>
+  <xs:attribute  name="from_date" type="from_date"></xs:attribute>
+   <xs:attribute  name="to_date" type="to_date"></xs:attribute>
+    
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="searchResult">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="item_id"/>
+      <xs:element ref="product_ref_id"/>
+      <xs:element ref="title"/>
+      <xs:element ref="category_id"/>
+      <xs:element ref="category_data"/>
+       <xs:element ref="price"/>
+      <xs:element ref="seller_rating"/>
+      <xs:element ref="condition"/>
+      <xs:element ref="seller_id"/>
+      <xs:element ref="quantity"/>
+      <xs:element ref="location"/>
+      <xs:element ref="availability"/>
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="hits">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="index"/>
+      <xs:element ref="type"/>
+      <xs:element ref="id"/>
+      <xs:element ref="score"/> 
+      <xs:element ref="source" />
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+
+<xs:element name="hit">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="total"/>
+      <xs:element ref="max_score"/>
+      <xs:element ref="hits" maxOccurs="unbounded"/>
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="shards">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="total"/>
+      <xs:element ref="successful"/>
+      <xs:element ref="failed"/>
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="ESResultSet">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="took"/>
+      <xs:element ref="timed_out"/>
+      <xs:element ref="shards"/>
+      <xs:element ref="hit"/>
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="source">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="item_id"/>
+      <xs:element ref="product_ref_id"/>
+      <xs:element ref="title"/>
+      <xs:element ref="category_id"/>
+      <xs:element ref="category_data"/>
+       <xs:element ref="price"/>
+      <xs:element ref="seller_rating"/>
+      <xs:element ref="condition"/>
+      <xs:element ref="seller_id"/>
+      <xs:element ref="quantity"/>
+      <xs:element ref="location"/>
+      <xs:element ref="availability" maxOccurs="unbounded"/>
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="searchRequest">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="searchKeyword"/>
+      <xs:element name="from_date" type="from_date"/>
+      <xs:element name="to_date" type="to_date" />  
+       <xs:element ref="lat"/>
+      <xs:element ref="lon"/>      
+     </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+</xs:schema>
