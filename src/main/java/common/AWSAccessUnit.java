@@ -12,8 +12,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 public class AWSAccessUnit {
 
- public static final String AWSACCESSKEYID = "AKIAJHZKQ7FBBH36XKMA";
- public static final String AWSSECRETKEY = "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";
+ public static final String AWSACCESSKEYID = "";
+ public static final String AWSSECRETKEY = "";
  
  public static final String REGION = "us-west-2";
  public static final String SERVICE = "es";
